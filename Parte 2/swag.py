@@ -28,3 +28,8 @@ print(f"La recisión de la red neuronal ha sido de {(model.metrics_names[1], eva
 prediccion = model.predict(entrenamiento_datos)
 prediccion_redondeada = [round(x[0]) for x in prediccion]
 print(f"La prediccion de la red neuronal ha sido de {(prediccion_redondeada)}")
+
+plt.plot([1,2])
+plt.subplot(2,1,1)
+plt.title('Predicción de la red neuronal vs Real')
+plt.plot(entrenamiento_valores, color='blue', label='Real')
