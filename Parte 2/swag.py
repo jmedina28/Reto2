@@ -11,8 +11,8 @@ numpy.random.seed(sem)
 
 dataset = numpy.loadtxt("Parte 2\swag.csv", delimiter=',')
 
-training_data = dataset[:, 0:8]
-training_targets = dataset[:, 8]
+entrenamiento_datos = dataset[:, 0:8]
+entrenamiento_valores = dataset[:, 8]
 
 
 model = Sequential()
@@ -21,4 +21,5 @@ model.add(Dense(8, kernel_initializer='uniform', activation='relu'))
 model.add(Dense(1, kernel_initializer='uniform', activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(training_data, training_targets, num, tamaño)
+model.fit(entrenamiento_datos, entrenamiento_valores, num, tamaño)
+evaluacion = model.evaluate(entrenamiento_datos, entrenamiento_valores)
