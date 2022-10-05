@@ -9,3 +9,4 @@ sem = int(input("¿Cual es la semilla de la red neuronal?\n"))
 
 numpy.random.seed(sem)
 
+dataset = numpy.loadtxt("Parte 2\swag.csv", delimiter=',')
