@@ -33,3 +33,7 @@ plt.plot([1,2])
 plt.subplot(2,1,1)
 plt.title('Predicción de la red neuronal vs Real')
 plt.plot(entrenamiento_valores, color='blue', label='Real')
+
+plt.subplot(2,1,2)
+plt.plot(prediccion_redondeada, color='red', label='Predicción')
+plt.show()
