@@ -24,3 +24,7 @@ model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy']
 model.fit(entrenamiento_datos, entrenamiento_valores, num, tamaño)
 evaluacion = model.evaluate(entrenamiento_datos, entrenamiento_valores)
 print(f"La recisión de la red neuronal ha sido de {(model.metrics_names[1], evaluacion[1] * 100)}")
+
+prediccion = model.predict(entrenamiento_datos)
+prediccion_redondeada = [round(x[0]) for x in prediccion]
+print(f"La prediccion de la red neuronal ha sido de {(prediccion_redondeada)}")
