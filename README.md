@@ -6,6 +6,7 @@
 2. [@Diegodesantos1](https://github.com/Diegodesantos1)
 3. [@mat0ta](https://github.com/mat0ta)
 4. [@XaviTheForce](https://github.com/Xavitheforce)
+5. [@ESTHERRODRIGUEZGARCIA](https://github.com/ESTHERRODRIGUEZGARCIA)
 
 ---
 En este [repositorio](https://github.com/jmedina28/Reto2) queda resuelto el reto 2.
