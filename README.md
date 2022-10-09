@@ -22,4 +22,5 @@ Finalmente, usando el algoritmo de propagación hacia atrás podemos encontrar e
 
 El algoritmo SWAG supera y converge más rápido que el rendimiento de última generación en redes neuronales totalmente conectadas. Además es capaz de resolver problemas que las arquitecturas actuales no pueden y tienen el potencial de cambiar la forma en  que nos acercamos al aprendizaje profundo. 
 
+![image](https://user-images.githubusercontent.com/91721860/194777539-dcacbf81-7283-4972-af85-ee69b7c1882d.png)
 
