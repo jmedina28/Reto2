@@ -1,5 +1,5 @@
 from Parte2.swag import swag
-def main():
+def lanzar():
     eleccion = 1
     while eleccion != "2":
         eleccion = input("¿Qué quieres hacer?\n(1) Ejecutar el Algoritmo Swag\n(2) Salir\nElección: ")
