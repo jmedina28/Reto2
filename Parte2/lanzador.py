@@ -6,5 +6,5 @@ def lanzar():
         if eleccion == "1":
             num = int(input("¿Cuántas veces quieres entrenar la red neuronal?\n")) # epoch
             tamaño = int(input("¿Cuántas veces quieres ejecutar el entreno de la red neuronal?\n")) #bach size
-            raiz = int(input("¿Cual es la raíz de la red neuronal?\n")) #seed
+            raiz = int(input("¿Cuál es la raíz de la red neuronal?\n")) #seed
             swag(num, tamaño, raiz)
