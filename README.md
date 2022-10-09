@@ -9,5 +9,5 @@
 5. [@ESTHERRODRIGUEZGARCIA](https://github.com/ESTHERRODRIGUEZGARCIA)
 
 ---
-En este [repositorio](https://github.com/jmedina28/Reto2) queda resuelto el reto 2.
+En este [repositorio](https://github.com/jmedina28/Reto2) queda resuelto el reto 2 en el que hemos llevado a cabo un análisis del algoritmo SWAG.
 ***
