@@ -11,3 +11,7 @@
 ---
 En este [repositorio](https://github.com/jmedina28/Reto2) queda resuelto el reto 2 en el que hemos llevado a cabo un análisis del siguiente [paper](https://arxiv.org/pdf/1811.11813.pdf).
 ***
+
+# El Algoritmo SWAG; un enfoque matemático que supera el aprendizaje profundo tradicional. 
+
+Tipo de red neuronal en el que las funciones de activación en cada capa forman una base polinomial. El algoritmo SWAG supera y converge más rápido que el rendimiento de última generación en redes neuronales totalmente conectadas.
