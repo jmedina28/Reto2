@@ -286,3 +286,232 @@ Figura 14: $F_{3}=22 x^{20}-\frac{1}{1+e^{x}}+2 e^{x}+5 \log _{10}(x)$ Experimen
 Figura 15: aprendizaje profundo tradicional en el conjunto de datos MNIST. Pérdida de prueba: $0.08366$ Precisión de la prueba: $0.9767$
 
 \includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-14(1)}
+
+Figura 16: SWAG en el conjunto de datos MNIST. Pérdida de prueba: $0.07297$ Precisión de la prueba: $0.9787$
+
+\subsection{Código fuente}
+Todo el código fuente está disponible en el siguiente enlace: \href{https://github.com/}{https://github.com/DeepLearningSaeid/New-Type-of-Deep-Learning/}
+
+\begin{verbatim}
+
+In [23]: model = Sequential()
+    model.add(Dense(10, input_dim=input_dim, activation=’relu’))
+    model.add(Dense(20, activation=’sigmoid’))
+    model.add(Dense(30, activation=’tanh’))
+    model.add(Dense(20, activation=’relu’))
+    model.add(Dense(15, activation=’sigmoid’))
+    model.add(Dense(25, activation=’relu’))
+    model.add(Dense(10, activation=’relu’))
+    model.add(Dense(output_dim, activation=’tanh’))
+    model.add(Dropout(0.2))
+    model.summary()
+    model.compile(loss=’mean_squared_error’, optimizer=’adam’)
+    model.fit(train_x,train_y,epochs=number_epo,verbose=0,batch_size=10,
+    validation_data=(test_x, test_y))
+    
+    
+    
+    
+_________________________________________________________________
+Layer (type) Output Shape Param #
+=================================================================
+dense_132 (Dense) (None, 10) 20
+_________________________________________________________________
+dense_133 (Dense) (None, 20) 220
+_________________________________________________________________
+dense_134 (Dense) (None, 30) 630
+_________________________________________________________________
+dense_135 (Dense) (None, 20) 620
+_________________________________________________________________
+dense_136 (Dense) (None, 15) 315
+_________________________________________________________________
+dense_137 (Dense) (None, 25) 400
+_________________________________________________________________
+dense_138 (Dense) (None, 10) 260
+_________________________________________________________________
+dense_139 (Dense) (None, 1) 11
+_________________________________________________________________
+dropout_17 (Dropout) (None, 1) 0
+=================================================================
+Total params: 2,476
+Trainable params: 2,476
+Non-trainable params: 0
+_________________________________________________________________
+Run Time : 15.135070
+
+Out[23]: [<matplotlib.lines.Line2D at 0x2440d33ea20>]
+
+In [24]: model = Sequential()
+    model.add(Dense(5, input_dim=input_dim, activation=’relu’))
+    model.add(Dense(10, activation=’relu’))
+    model.add(Dense(50, activation=’tanh’))
+    model.add(Dense(18, activation=’relu’))
+    model.add(Dense(15, activation=’tanh’))
+    model.add(Dense(18, activation=’sigmoid’))
+    model.add(Dropout(0.2))
+    model.add(Dense(8, activation=’relu’))
+    model.add(Dropout(0.2))
+    model.add(Dense(output_dim, activation=’relu’))
+    model.summary()
+    model.compile(loss=’mean_squared_error’, optimizer=’adam’)
+    model.fit(train_x,train_y,epochs=number_epo,verbose=0,batch_size=10,
+    validation_data=(test_x, test_y))
+_________________________________________________________________
+Layer (type) Output Shape Param #
+=================================================================
+dense_140 (Dense) (None, 5) 10
+_________________________________________________________________
+dense_141 (Dense) (None, 10) 60
+_________________________________________________________________
+dense_142 (Dense) (None, 50) 550
+_________________________________________________________________
+dense_143 (Dense) (None, 18) 918
+_________________________________________________________________
+dense_144 (Dense) (None, 15) 285
+_________________________________________________________________
+dense_145 (Dense) (None, 18) 288
+_________________________________________________________________
+dropout_18 (Dropout) (None, 18) 0
+_________________________________________________________________
+dense_146 (Dense) (None, 8) 152
+_________________________________________________________________
+dropout_19 (Dropout) (None, 8) 0
+_________________________________________________________________
+dense_147 (Dense) (None, 1) 9
+=================================================================
+Total params: 2,272
+Trainable params: 2,272
+Non-trainable params: 0
+_________________________________________________________________
+Run Time : 14.923352
+
+
+Out[24]: [<matplotlib.lines.Line2D at 0x2441d9ba160>]
+
+In [25]: model = Sequential()
+    model.add(Dense(5, input_dim=input_dim, activation=’relu’))
+    model.add(Dense(10, activation=’relu’))
+    model.add(Dense(20, activation=’tanh’))
+    model.add(Dense(15, activation=’relu’))
+    model.add(Dense(25, activation=’tanh’))
+    model.add(Dense(20, activation=’sigmoid’))
+    model.add(Dense(25, activation=’relu’))
+    model.add(Dense(20, activation=’relu’))
+    model.add(Dropout(0.2))
+    model.add(Dense(8, activation=’relu’))
+    model.add(Dropout(0.2))
+    model.add(Dense(output_dim, activation=’relu’))
+    model.summary()
+    model.compile(loss=’mean_squared_error’, optimizer=’adam’)
+    model.fit(train_x,train_y,epochs=number_epo,verbose=0,batch_size=10,
+    validation_data=(test_x, test_y))
+_________________________________________________________________
+Layer (type) Output Shape Param #
+=================================================================
+dense_148 (Dense) (None, 5) 10
+_________________________________________________________________
+dense_149 (Dense) (None, 10) 60
+_________________________________________________________________
+dense_150 (Dense) (None, 20) 220
+_________________________________________________________________
+dense_151 (Dense) (None, 15) 315
+_________________________________________________________________
+dense_152 (Dense) (None, 25) 400
+_________________________________________________________________
+dense_153 (Dense) (None, 20) 520
+_________________________________________________________________
+dense_154 (Dense) (None, 25) 525
+_________________________________________________________________
+dense_155 (Dense) (None, 20) 520
+_________________________________________________________________
+dropout_20 (Dropout) (None, 20) 0
+_________________________________________________________________
+dense_156 (Dense) (None, 8) 168
+_________________________________________________________________
+dropout_21 (Dropout) (None, 8) 0
+_________________________________________________________________
+dense_157 (Dense) (None, 1) 9
+=================================================================
+Total params: 2,747
+Trainable params: 2,747
+Non-trainable params: 0
+_________________________________________________________________
+Run Time : 16.343230
+
+
+Out[25]: [<matplotlib.lines.Line2D at 0x2441f61fda0>]
+
+In [26]: model = Sequential()
+    model.add(Dense(40, input_dim=input_dim, activation=’relu’))
+    model.add(Dense(25, activation=’relu’))
+    model.add(Dropout(0.2))
+    model.add(Dense(output_dim, activation=’relu’))
+    model.add(Dropout(0.2))
+    model.summary()
+    model.compile(loss=’mean_squared_error’, optimizer=’adam’)
+    model.fit(train_x,train_y,epochs=number_epo,verbose=0,batch_size=10,
+    validation_data=(test_x, test_y))
+_________________________________________________________________
+Layer (type) Output Shape Param #
+=================================================================
+dense_158 (Dense) (None, 40) 80
+_________________________________________________________________
+dense_159 (Dense) (None, 25) 1025
+_________________________________________________________________
+dropout_22 (Dropout) (None, 25) 0
+_________________________________________________________________
+dense_160 (Dense) (None, 1) 26
+_________________________________________________________________
+dropout_23 (Dropout) (None, 1) 0
+=================================================================
+Total params: 1,131
+Trainable params: 1,131
+Non-trainable params: 0
+_________________________________________________________________
+Run Time : 14.620049
+
+
+Out[26]: [<matplotlib.lines.Line2D at 0x24421b63da0>]
+
+In [27]: model = Sequential()
+    model.add(Dense(5, input_dim=input_dim, activation=’soft_plus_te’))
+    model.add(Dense(10, activation=’soft_plus_te’))
+    model.add(Dense(20, activation=’tanh’))
+    model.add(Dense(15, activation=’relu’))
+    model.add(Dense(25, activation=’tanh’))
+    model.add(Dense(20, activation=’sigmoid’))
+    model.add(Dense(25, activation=’relu’))
+    model.add(Dense(output_dim, activation=’soft_plus_te’))
+    model.add(Dropout(0.2))
+    model.compile(loss=’mean_squared_error’, optimizer=’adam’)
+    model.fit(train_x,train_y,epochs=number_epo,verbose=0,batch_size=10,
+    validation_data=(test_x, test_y))
+    model.summary()
+_________________________________________________________________
+Layer (type) Output Shape Param #
+=================================================================
+dense_161 (Dense) (None, 5) 10
+_________________________________________________________________
+dense_162 (Dense) (None, 10) 60
+_________________________________________________________________
+dense_163 (Dense) (None, 20) 220
+_________________________________________________________________
+dense_164 (Dense) (None, 15) 315
+_________________________________________________________________
+dense_165 (Dense) (None, 25) 400
+_________________________________________________________________
+dense_166 (Dense) (None, 20) 520
+_________________________________________________________________
+dense_167 (Dense) (None, 25) 525
+_________________________________________________________________
+dense_168 (Dense) (None, 1) 26
+_________________________________________________________________
+dropout_24 (Dropout) (None, 1) 0
+=================================================================
+Total params: 2,076
+Trainable params: 2,076
+Non-trainable params: 0
+_________________________________________________________________
+\end{verbatim}
+
+\end{document}
