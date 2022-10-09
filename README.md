@@ -24,3 +24,4 @@ El algoritmo SWAG supera y converge más rápido que el rendimiento de última g
 
 ![image](https://user-images.githubusercontent.com/91721860/194777539-dcacbf81-7283-4972-af85-ee69b7c1882d.png)
 
+![image](https://user-images.githubusercontent.com/91721860/194777594-b7d9ce03-aa4d-4b8e-8209-8901bc05e9a4.png)
