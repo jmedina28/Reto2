@@ -132,3 +132,157 @@ $$
 1 \leq i \leq 3 \quad Y_{i_{\text {train }}}=F_{i}\left(x_{\text {train }}\right) \quad Y_{1_{\text {test }}}=F_{1}\left(x_{\text {test }}\right)
 $$
 Repetimos el proceso del primer experimento para entrenar y probar los distintos modelos. Los resultados de los dos experimentos se encuentran en las Figuras 5-14 del apéndice.\\
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-06}
+
+Figura 3: $F_{1}=\frac{1}{2} x^{2}-5\left(\frac{1}{1+e^{x}}\right)$ Experimento 1 forma
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-06(1)}
+
+
+Figura 4: $F_{1}=\frac{1}{2} x^{2}-5\left(\frac{1}{1+e^{x}}\right)$ Experimento 1 forma
+
+\subsection{Conjunto de datos de escritura a mano del MNIST}
+Para nuestro experimento final, ejecutamos SWAG en el conjunto de datos de escritura manual MNIST [LC10]. El conjunto de datos se compone de un total de 70.000 imágenes, todas las cuales son muestras únicas de escritura a mano de los números 0-9. Aplanamos estas imágenes en vectores de tamaño $(784,1)$ y las usamos como entradas para un DNN tradicional, así como para SWAG. El DNN tradicional tenía tres capas ocultas. En la primera y segunda capa usamosReLUcomo la función de activación con 1024 neuronas en cada capa. Para la tercera capa usamos Así que f tmáxcomo la función de activación con 10 neuronas (código en apéndice). Para nuestra implementación de SWAG,
+usamos $l=500, k=7$ 2 capas. Utilizamos un conjunto de entrenamiento que constaba de 60 000 imágenes y un conjunto de prueba que constaba de 10 000 imágenes. En el método tradicional obtuvimos una precisión de prueba
+de $0.9767$ después de 4 épocas. SWAG logró una precisión de prueba de $0.9787$ después de 4 épocas. Los resultados se muestran en el apéndice en la Figura 15 y la Figura 16.
+
+\section{Discusión}
+En este trabajo, presentamos un conjunto de funciones de activación y una nueva arquitectura. Llamamos a esta arquitectura SWAG. La primera capa de nuestra arquitectura tiene al menos $k$ neuronas donde $k$ es el grado
+del polinomio para la estimación de la función $g(x)$ tal que $g\left(x_{j}\right)=y_{j}$ para todo $1 \leq j \leq n$; esta capa tiene $k$ diferentes funciones de activación $\left\{\frac{x^{p}}{p !}\right\}_{p=1}^{k}$. La segunda capa es una capa totalmente conectada con una función de activación lineal. Para agregar capas adicionales, se repite el patrón de las primeras 2
+capas. Usando el algoritmo de propagación hacia atrás podemos encontrar el conjunto de pesos que optimizan
+las predicciones.
+
+Creamos un conjunto de datos aleatorios con funciones no lineales muy complicadas. Evaluamos la
+efectividad de SWAG y descubrimos que podía aproximar las funciones mejor que los métodos tradicionales de
+aprendizaje profundo; también convergió más rápido. Finalmente probamos SWAG en el conjunto de datos de
+escritura a mano MNIST. Nuestro método fue capaz de replicar el estado del arte en arquitecturas totalmente
+conectadas mientras converge en solo 4 épocas.
+
+Observamos que hay muchos conjuntos de bases que pueden estimar una función con precisión arbitraria. En trabajos futuros, será importante comparar el rendimiento de diferentes conjuntos de bases y aproximaciones de funciones para determinar cuál tiene un mejor rendimiento en situaciones específicas.
+Nuestra conjetura es que la base ortogonal proporcionará una ventaja en algunos casos. Otra cuestión interesante a seguir es encontrar una manera de establecer los pesos iniciales del sistema de manera más
+efectiva. Creemos que una estimación de Taylor de nuestro conjunto de datos aumentará el rendimiento de SWAG después de la inicialización.
+
+Además, encontramos especialmente interesante la cuestión de cómo implementar esta arquitectura en redes neuronales convolucionales y recursivas. Las redes neuronales convolucionales han superado la precisión lograda con redes neuronales completamente conectadas en el conjunto de
+datos MNIST y también reducen la cantidad de parámetros necesarios para entrenar una red neuronal completamente conectada. También redujimos la cantidad de parámetros en una red completamente conectada, pero no pudimos superar el estado del arte en redes neuronales convolucionales con nuestra implementación actual. Presumimos que implementar el marco SWAG en redes neuronales convolucionales y recursivas nos permitirá reducir aún más los parámetros, hacer que nuestro modelo converja aún más rápido y obtener una mayor precisión que la que es posible actualmente.
+
+\section{Referencias}
+
+[BR89] Avrim Blum and Ronald L. Rivest. Training a 3-Node Neural Network is NPComplete. In D. S. Touretzky, editor, \emph{Advances in Neural Information Processing Systems 1},  pages 494–501. Morgan-Kaufmann, 1989.
+\newline
+
+[CLP16] Hoon Chung, Sung Joo Lee, and Jeon Gue Park. Deep neural network using trainable activation functions. In \emph{Neural Networks (IJCNN), 2016 International Joint Conference on}, pages 348–352. IEEE, 2016.
+\newline
+
+[CUH15] Djork-Arné Clevert, Thomas Unterthiner, and Sepp Hochreiter. Fast and accurate deep network learning by exponential linear units (elus). \emph{arXiv preprint
+arXiv:1511.07289}, 2015.
+\newline
+
+[HDR18] Soufiane Hayou, Arnaud Doucet, and Judith Rousseau. On the selection of
+initialization and activation function for deep neural networks. \emph{arXiv preprint
+arXiv:1805.08266}, 2018.
+\newline
+
+[HSM $\left.{ }^{+} 00\right]$ Richard HR Hahnloser, Rahul Sarpeshkar, Misha A Mahowald, Rodney J Douglas,
+and H Sebastian Seung. Digital selection and analogue amplification coexist in a
+cortex-inspired silicon circuit. \emph{Nature}, 405(6789):947, 2000.
+\newline
+
+$\left[\mathrm{JL}^{+} 09\right]$ Kevin Jarrett, Koray Kavukcuoglu, Yann LeCun, et al. What is the best multi-stage
+architecture for object recognition? In \emph{Computer Vision, 2009 IEEE 12th International
+Conference on}, pages 2146–2153. IEEE, 2009.
+\newline
+
+[JSA15] Majid Janzamin, Hanie Sedghi, and Anima Anandkumar. Beating the Perils of
+Non-Convexity: Guaranteed Training of Neural Networks using Tensor Methods.
+\emph{arXiv:1506.08473 [cs, stat]}, June 2015. arXiv: 1506.08473.
+\newline
+
+[KB14] Diederik P Kingma and Jimmy Ba. Adam: A method for stochastic optimization.
+\emph{arXiv preprint arXiv:1412.6980}, 2014.
+\newline
+
+[KUMH17] Günter Klambauer, Thomas Unterthiner, Andreas Mayr, and Sepp Hochreiter. Selfnormalizing neural networks. In \emph{Advances in Neural Information Processing Systems},
+pages 971–980, 2017.
+\newline
+
+[LBH15] Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. Deep learning. \emph{Nature},
+521(7553):436–444, May 2015.
+\newline
+
+[LC10] $\quad$ Yann LeCun and Corinna Cortes. MNIST handwritten digit database. 2010.
+\newline
+
+[LLPS93] Moshe Leshno, Vladimir Ya. Lin, Allan Pinkus, and Shimon Schocken. Multilayer
+feedforward networks with a nonpolynomial activation function can approximate
+any function. \emph{Neural Networks}, 6(6):861–867, January 1993.
+\newline
+
+[LTR17] Henry W Lin, Max Tegmark, and David Rolnick. Why does deep and cheap learning work so well? \emph{Journal of Statistical Physics}, 168(6):1223–1247, 2017.
+\newline
+
+[MHN13] Andrew L Maas, Awni Y Hannun, and Andrew Y Ng. Rectifier nonlinearities improve neural network acoustic models. In \emph{Proceedings of the 30th International Conference on Machine Learning (ICML-13)}, volume 30, page 3, 2013.
+\newline
+
+[NH10] Vinod Nair and Geoffrey E Hinton. Rectified linear units improve restricted boltzmann machines. In \emph{Proceedings of the 27th International Conference on Machine Learning (ICML-10)}, pages 807–814, 2010.
+\newline
+
+[RZL18] Prajit Ramachandran, Barret Zoph, and Quoc V Le. Searching for activation functions. 2018.
+\newline
+
+[Sch15] Jürgen Schmidhuber. Deep learning in \emph{neural networks}: An overview. Neural
+networks, 61:85–117, 2015.
+\newline
+
+[TGY04] Fevzullah Temurtas, Ali Gulbag, and Nejat Yumusak. A study on neural networks
+using taylor series expansion of sigmoid activation function. In \emph{International Conference on Computational Science and Its Applications}, pages 389–397. Springer, 2004.
+\newline
+
+[ZL18] Guoqiang Zhang and Haopeng Li. Effectiveness of scaled exponentiallyregularized linear units (serlus). \emph{arXiv preprint arXiv:1807.10117}, 2018.
+
+\section{Apéndice}
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-09}
+
+Figura 5: $F_{2}=6 x^{5}-3\left(\frac{1}{1+e^{x}}\right)+e^{x}-9 \log _{10}(x)$ Experimento 1 pérdida
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-09(1)}
+
+Figura 6: $F_{2}=6 x^{5}-3\left(\frac{1}{1+e^{x}}\right)+e^{x}-9 \log _{10}(x)$ Experimento 1 forma\\
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-10}
+
+Figura 7: $\quad F_{3}=22 x^{20}-\frac{1}{1+e^{x}}+2 e^{x}+5 \log _{10}(x)$ Experimento 1 pérdida
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-10(1)}
+
+Figura 8: $F_{3}=22 x^{20}-\frac{1}{1+e^{x}}+2 e^{x}+5 \log _{10}(x)$ Experimento 1 forma\\
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-11}
+
+Figura 9: $F_{1}=\frac{1}{2} x^{2}-5\left(\frac{1}{1+e^{x}}\right)$ Experimento 2 pérdida
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-11(1)}
+
+Figura 10: $F_{1}=\frac{1}{2} x^{2}-5\left(\frac{1}{1+e^{x}}\right)$ Experimento 2 forma\\
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-12}
+
+Figura 11: $\quad F_{2}=6 x^{5}-3\left(\frac{1}{1+e^{x}}\right)+e^{x}-9 \log _{10}(x)$ Experiment 2 forma
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-12(1)}
+
+Figura 12: $\quad F_{2}=6 x^{5}-3\left(\frac{1}{1+e^{x}}\right)+e^{x}-9 \log _{10}(x)$ Experimento 2 forma\\
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-13}
+
+Figura 13: $\quad F_{3}=22 x^{20}-\frac{1}{1+e^{x}}+2 e^{x}+5 \log _{10}(x)$ Experimento 2 pérdida
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-13(1)}
+
+Figura 14: $F_{3}=22 x^{20}-\frac{1}{1+e^{x}}+2 e^{x}+5 \log _{10}(x)$ Experimento 2 forma
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-14}
+
+Figura 15: aprendizaje profundo tradicional en el conjunto de datos MNIST. Pérdida de prueba: $0.08366$ Precisión de la prueba: $0.9767$
+
+\includegraphics[max width=\textwidth]{2022_09_28_0067ec14010042dbf918g-14(1)}
